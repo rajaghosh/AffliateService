@@ -1,0 +1,46 @@
+﻿USE[Affliate]
+GO
+/****** Object:  User [test]    Script Date: 7/7/2023 12:41:18 AM ******/
+CREATE USER [test] FOR LOGIN[test] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  Table [dbo].[ProductAffliateDiscount]    Script Date: 7/7/2023 12:41:18 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ProductAffliateDiscount](
+
+[Id][int] IDENTITY(1, 1) NOT NULL,
+
+[ProductId] [int] NULL,
+	[DiscountPercent] [decimal](18, 2) NULL,
+ CONSTRAINT[PK_ProductAffliateDiscount] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH(PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON[PRIMARY]
+) ON[PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserDetails]    Script Date: 7/7/2023 12:41:18 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserDetails](
+
+[Id][bigint] IDENTITY(1, 1) NOT NULL,
+
+[Name] [varchar](50) NULL,
+	[Email] [varchar](50) NULL,
+	[Password] [varchar](15) NULL,
+	[IsAdmin] [bit] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+ CONSTRAINT[PK_AffliateUser] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH(PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON[PRIMARY]
+) ON[PRIMARY]
+GO
+ALTER TABLE [dbo].[UserDetails] ADD CONSTRAINT[DF_AffliateUser_IsAdmin]  DEFAULT ((0)) FOR[IsAdmin]
+GO
+ALTER TABLE [dbo].[UserDetails] ADD CONSTRAINT[DF_User_IsActive]  DEFAULT ((1)) FOR[IsActive]
+GO
